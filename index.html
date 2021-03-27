@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Some API</title>
+		
+		<script>
+			function getMovies() {
+				var request = new XMLHttpRequest();
+				
+				//open the api using 'GET'
+				request.open("GET", "https://ghibliapi.herokuapp.com/films", true);
+				
+				request.onload = function() {
+					//parse the JSON object for readability
+					var data = JSON.parse(this.response);
+					//get title for each movie in api
+					data.forEach((movie) => {
+						//add movie to the output div
+						document.getElementById("data").innerHTML += movie.title +  "<strong> Also Know As: " +  movie.original_title + "<br>";
+						
+					})
+				}
+				request.send();
+
+			}
+			
+		</script>
+			
+	</head>
+	<body onload="getMovies()">
+		
+		<h1>Studio Ghibli</h1>
+		<div id="data">Check out these Studio Ghibli Movies! <br><br></div>
+		
+		<div id = "explain">
+			
+			<h1>Why This API</h1>
+			<p>
+				For the Midterm Project, my group and I make a website for a dine-in
+				theater. One member of our group had to manually find and type out the movie 
+				titles and descriptions for each movie we used. When this API assignment came up it 
+				made me think, it would be great to just import all the movies (and descriptions) 
+				from an API. Luckily one of my favorite movie studios had a free/open API. 
+			</p>
+		</div>
+		
+		<a href="https://ghibliapi.herokuapp.com/#">Go to Studio Ghibli API</a>
+		
+		<div id = "useful">
+			<h1>Two Useful Applications</h1>
+			
+			<ol>
+				<li>This would be a helpful if you were a theater company and wanted to
+				import all movies data and keep the movies descriptions and releases
+				up to date.</li>
+			
+				<li>If you were making an app like Goodreads but for movies.
+				'Goodwatches' let's call it - having access to a movie studio API
+				would allow for a large database of movies for your users to choose from.
+				So Studio Ghibli's API would be one of many that you would hopefully gain
+				access to.
+				</li>
+				
+				
+			</ol>
+			
+			
+		</div>
+	</body>
+</html>
